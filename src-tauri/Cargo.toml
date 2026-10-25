@@ -1,0 +1,39 @@
+[package]
+name = "fluentloop"
+version = "0.1.0"
+description = "FluentLoop — local-first English immersion workspace"
+authors = ["FluentLoop"]
+edition = "2024"
+
+[lib]
+name = "fluentloop_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+tauri = { version = "2", features = ["protocol-asset"] }
+tauri-plugin-opener = "2"
+tauri-plugin-dialog = "2"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+rusqlite = { version = "0.41", features = ["bundled"] }
+uuid = { version = "1", features = ["v4"] }
+chrono = { version = "0.4", default-features = false, features = ["clock", "std"] }
+thiserror = "2"
+keyring = { version = "3", features = ["apple-native"] }
+reqwest = { version = "0.12", default-features = false, features = ["json", "rustls-tls"] }
+zip = { version = "2", default-features = false, features = ["deflate"] }
+
+[dev-dependencies]
+tempfile = "3"
+
+[profile.release]
+codegen-units = 1
+lto = true
+opt-level = 3
+# unwind: a panic in one command fails that command instead of killing the app.
+panic = "unwind"
+# keep symbol names so panic.log backtraces are readable
+strip = "debuginfo"

@@ -1,0 +1,169 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Design tokens. Components use the Tailwind names from @theme below (bg-panel, text-muted, …). */
+:root {
+  /* surfaces */
+  --bg: #f8f8f6; /* warm off-white page */
+  --panel: #ffffff; /* cards, header, sidebar content */
+  --sunken: #f3f3f0; /* sidebar, inputs-in-panels, wells */
+  --hover: #efefeb;
+  --border: #e7e6e1;
+  --border-strong: #d6d5cf;
+  /* text */
+  --text: #1c1f1d;
+  --muted: #646a66;
+  --faint: #979c98;
+  /* muted green accent */
+  --accent: #3e7d55;
+  --accent-hover: #346a48;
+  --accent-soft: #ecf4ee;
+  --accent-text: #2d6243;
+  /* primary action (soft green fill, dark text) */
+  --primary: #cfe5c9;
+  --primary-hover: #c1ddb9;
+  --primary-text: #183522;
+  /* status */
+  --danger: #c2413a;
+  --danger-soft: #fbedec;
+  --success: #2f8a4f;
+  --success-soft: #e8f4ec;
+  --warn: #a8660a;
+  --warn-soft: #fbf2e1;
+  /* speakers (semantic, not brand) */
+  --person-a: #2f6fdb;
+  --person-a-soft: #e8f0fd;
+  --person-b: #8a4fd1;
+  --person-b-soft: #f2eafc;
+  /* shape */
+  --r-control: 8px;
+  --r-card: 12px;
+  --sh-card: 0 1px 2px rgb(20 24 22 / 0.04), 0 1px 1px rgb(20 24 22 / 0.03);
+  --sh-pop: 0 8px 28px rgb(20 24 22 / 0.12), 0 2px 6px rgb(20 24 22 / 0.06);
+  --font-scale: 1;
+  color-scheme: light;
+}
+
+.dark {
+  --bg: #191b1a;
+  --panel: #212423;
+  --sunken: #1c1e1d;
+  --hover: #2a2e2c;
+  --border: #313533;
+  --border-strong: #434845;
+  --text: #ecefed;
+  --muted: #a2a8a4;
+  --faint: #737a76;
+  --accent: #6fb48a;
+  --accent-hover: #82c19b;
+  --accent-soft: #223329;
+  --accent-text: #8fcba5;
+  --primary: #2f4a37;
+  --primary-hover: #375641;
+  --primary-text: #dcefe1;
+  --danger: #ef6b63;
+  --danger-soft: #3d2423;
+  --success: #5cc17f;
+  --success-soft: #1f3528;
+  --warn: #e3a246;
+  --warn-soft: #3a2e1b;
+  --person-a: #6ea1f2;
+  --person-a-soft: #233552;
+  --person-b: #b591ee;
+  --person-b-soft: #34284a;
+  --sh-card: 0 1px 2px rgb(0 0 0 / 0.25);
+  --sh-pop: 0 10px 30px rgb(0 0 0 / 0.45);
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-panel: var(--panel);
+  --color-sunken: var(--sunken);
+  --color-hover: var(--hover);
+  --color-line: var(--border);
+  --color-line-strong: var(--border-strong);
+  --color-ink: var(--text);
+  --color-muted: var(--muted);
+  --color-faint: var(--faint);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-soft: var(--accent-soft);
+  --color-accent-text: var(--accent-text);
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-text: var(--primary-text);
+  --radius-control: var(--r-control);
+  --radius-card: var(--r-card);
+  --shadow-card: var(--sh-card);
+  --shadow-pop: var(--sh-pop);
+  --color-danger: var(--danger);
+  --color-danger-soft: var(--danger-soft);
+  --color-success: var(--success);
+  --color-success-soft: var(--success-soft);
+  --color-warn: var(--warn);
+  --color-warn-soft: var(--warn-soft);
+  --color-pa: var(--person-a);
+  --color-pa-soft: var(--person-a-soft);
+  --color-pb: var(--person-b);
+  --color-pb-soft: var(--person-b-soft);
+  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", "Kohinoor Bangla", "Bangla Sangam MN", sans-serif;
+  --font-mono: ui-monospace, "SF Mono", Menlo, monospace;
+}
+
+html {
+  font-size: calc(14px * var(--font-scale));
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  overflow: hidden;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* Text the user may want to select/copy */
+input,
+textarea,
+.selectable {
+  user-select: text;
+  -webkit-user-select: text;
+}
+
+button {
+  cursor: default;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-strong);
+  border-radius: 8px;
+  border: 3px solid transparent;
+  background-clip: content-box;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+input[type="range"] {
+  accent-color: var(--accent);
+}
